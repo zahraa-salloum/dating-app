@@ -19,7 +19,9 @@ class CreateUsersInfoTable extends Migration
             $table->string("status");
             $table->string("education");
             $table->string("job");
-            $table->integer('user_id')->unsigned();
+            
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -17,8 +17,13 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->string("message");
             $table->dateTime("date_time");
-            $table->integer('user_id_sent')->unsigned();
-            $table->integer('user_id_received')->unsigned();
+            
+            $table->bigInteger('user_id_sent')->unsigned();
+            $table->foreign('user_id_sent')->references('id')->on('users')->onDelete('cascade');
+
+            $table->bigInteger('user_id_received')->unsigned();
+            $table->foreign('user_id_received')->references('id')->on('users')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

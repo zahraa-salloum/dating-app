@@ -15,8 +15,12 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('user_id_blocked')->unsigned();
+            
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            $table->bigInteger('user_id_blocked')->unsigned();
+            $table->foreign('user_id_blocked')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
