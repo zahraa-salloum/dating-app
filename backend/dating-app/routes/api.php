@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersActionsController;
+use App\Http\Controllers\MessagesController;
 
 
 Route::group(["prefix" => "v0.0.1"], function(){
