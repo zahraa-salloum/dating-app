@@ -32,4 +32,11 @@ Route::group(["prefix" => "users_actions"],function () {
     Route::get('/my_favorites/{id}', [UsersActionsController::class, "myFavorites"]);
     
 });
+Route::group(["prefix" => "messages"],function () {
+    Route::get('/send_message/{id}', [MessagesController::class, "sendMessage"]);
+    
+
+});
+
+
 });
