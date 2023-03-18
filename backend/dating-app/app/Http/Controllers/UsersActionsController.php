@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Users_info;
 
 
+
 class UsersActionsController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     function addOrUpdateUsersInfo(Request $request, $id){
+        
 
         $user_info = Users_info::where('user_id', $id)->first();
-        
+
         if(empty($user_info) ){
             $user_info = new Users_info;
         }
