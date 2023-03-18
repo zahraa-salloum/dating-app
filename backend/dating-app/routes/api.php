@@ -20,6 +20,8 @@ Route::group(["prefix" => "users_actions"],function () {
     Route::get('/opposite_gender/{id}', [UsersActionsController::class, "getOppositeGender"]);
     Route::get('/filter_country/{country}', [UsersActionsController::class, "filterByCountry"]);
     Route::get('/filter_age/{year}', [UsersActionsController::class, "filterByAge"]);
+    Route::get('/get_name/{id}', [UsersActionsController::class, "getName"]);
+    
     
 });
 });

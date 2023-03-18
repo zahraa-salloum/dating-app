@@ -72,7 +72,14 @@ class UsersActionsController extends Controller
             "users" => $user_info
         ]);
     }
-    
+
+    function getName($id){
+        $user_info =  User::find($id);
+
+        return response()->json([
+            "user" => $user_info
+        ]);
+    }
 
 
 }
