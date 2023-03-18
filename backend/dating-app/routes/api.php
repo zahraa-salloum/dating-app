@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UsersActionsController;
 
 
 Route::group(["prefix" => "v0.0.1"], function(){
@@ -15,5 +16,7 @@ Route::group(["prefix" => "authentication"],function () {
     Route::post('refresh', [AuthController::class, "refresh"]);
 
 });
-
+Route::group(["prefix" => "users_actions"],function () {
+    Route::get('/users_info/{id}', [UsersActionsController::class, "addOrUpdateUsersInfo"]);
+});
 });
