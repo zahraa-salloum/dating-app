@@ -26,6 +26,7 @@ Route::group(["prefix" => "users_actions"],function () {
     Route::get('/block_user/{id}', [UsersActionsController::class, "blockUser"]);
     Route::get('/favorite_user/{id}', [UsersActionsController::class, "favoriteUser"]);
     Route::get('/who_blocked/{id}', [UsersActionsController::class, "getWhoBlocked"]);
+    Route::get('/who_favorite/{id}', [UsersActionsController::class, "getWhoFavorite"]);
     
 });
 });
