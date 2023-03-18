@@ -163,4 +163,12 @@ class UsersActionsController extends Controller
         
     }
 
+    function getWhoBlocked($id){
+        $who_blocked =  Block::join('users', 'blocks.user_id', '=', 'users.id')->select('name','user_id')->where('user_id_blocked',$id)->get();
+        
+        return response()->json([
+            "who_blocked" => $who_blocked
+        ]);
+    }
+
 }
