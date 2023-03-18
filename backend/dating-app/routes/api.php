@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UsersActionsController;
 
 
@@ -18,5 +17,7 @@ Route::group(["prefix" => "authentication"],function () {
 });
 Route::group(["prefix" => "users_actions"],function () {
     Route::get('/users_info/{id}', [UsersActionsController::class, "addOrUpdateUsersInfo"]);
+    Route::get('/opposite_gender/{id}', [UsersActionsController::class, "getOppositeGender"]);
+    Route::get('/filter_country/{country}', [UsersActionsController::class, "filterByCountry"]);
 });
 });

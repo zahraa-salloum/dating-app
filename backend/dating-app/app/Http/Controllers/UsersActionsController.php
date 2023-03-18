@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Users_info;
+use App\Models\User;
 
 
 
@@ -40,4 +41,27 @@ class UsersActionsController extends Controller
             "success" => true
         ]);
     }
+
+    function getOppositeGender($id){
+        $user_info =  Users_info::where('user_id', $id)->first();
+        $gender = $user_info->gender;
+        if($gender == 'female'){
+            $opposite_users = Users_info::where('gender','male')->get();
+        }else{
+            $opposite_users = Users_info::where('gender','female')->get();
+        }
+
+        return response()->json([
+            "opposite_users" => $opposite_users
+        ]);
+    }
+
+    function filterByCountry($country){
+        $user_info =  Users_info::where('country',$country)->get();
+
+        return response()->json([
+            "users" => $user_info
+        ]);
+    }
+
 }
