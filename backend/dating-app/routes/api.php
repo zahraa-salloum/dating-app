@@ -22,6 +22,7 @@ Route::group(["prefix" => "users_actions"],function () {
     Route::get('/filter_age/{year}', [UsersActionsController::class, "filterByAge"]);
     Route::get('/get_name/{id}', [UsersActionsController::class, "getName"]);
     Route::get('/search_name/{name}', [UsersActionsController::class, "searchByName"]);
+    Route::get('/upload_picture/{id}', [UsersActionsController::class, "uploadPicture"]);
     
     
 });

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users_info;
 use App\Models\User;
+use App\Models\Picture;
 
 
 
@@ -87,6 +88,33 @@ class UsersActionsController extends Controller
         return response()->json([
             "user" => $user_info
         ]);
+    }
+
+
+    function uploadPicture(Request $request, $id){
+        
+
+        $picture = Picture::where('user_id', $id)->get();
+        $pictures_count = $picture->count();
+
+        if($pictures_count < 3){
+            $new_picture = new Picture;
+        
+        
+        $new_picture->picture = $request->picture;
+        $new_picture->user_id = $id;
+       
+        $new_picture->save();
+
+        return response()->json([
+            "success" => true
+        ]);
+
+    }
+    return response()->json([
+        "success" => false,
+        "condition" => 'max 3 photos'
+    ]);
     }
 
 }
