@@ -141,4 +141,26 @@ class UsersActionsController extends Controller
         
     }
 
+    function favoriteUser(Request $request, $id){
+        $user_id_favorite = $request->user_id_favorite;
+        $favorite =  Favorite::where('user_id',$id)->where('user_id_favorite',$user_id_favorite)->get();
+        $favorite_count = $favorite->count();
+        if($favorite_count == 0){
+        
+        $new_favorite = new Favorite;
+        $new_favorite->user_id = $id;
+        $new_favorite->user_id_favorite = $request->user_id_favorite;
+        $new_favorite->save();
+
+        return response()->json([
+            "success" => true
+        ]);
+    } else{
+        return response()->json([
+            "success" => false
+        ]);
+    }
+        
+    }
+
 }
