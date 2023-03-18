@@ -23,7 +23,7 @@ Route::group(["prefix" => "users_actions"],function () {
     Route::get('/get_name/{id}', [UsersActionsController::class, "getName"]);
     Route::get('/search_name/{name}', [UsersActionsController::class, "searchByName"]);
     Route::get('/upload_picture/{id}', [UsersActionsController::class, "uploadPicture"]);
-    
+    Route::get('/block_user/{id}', [UsersActionsController::class, "blockUser"]);
     
 });
 });

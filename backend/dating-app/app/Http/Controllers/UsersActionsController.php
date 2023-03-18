@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Users_info;
 use App\Models\User;
 use App\Models\Picture;
+use App\Models\Block;
+use App\Models\Favorite;
 
 
 
@@ -101,20 +103,42 @@ class UsersActionsController extends Controller
             $new_picture = new Picture;
         
         
-        $new_picture->picture = $request->picture;
-        $new_picture->user_id = $id;
+            $new_picture->picture = $request->picture;
+            $new_picture->user_id = $id;
        
-        $new_picture->save();
+            $new_picture->save();
+
+             return response()->json([
+                "success" => true
+            ]);
+
+        }
+        return response()->json([
+            "success" => false,
+            "condition" => 'max 3 photos'
+        ]);
+    }
+
+    function blockUser(Request $request, $id){
+        $user_id_blocked = $request->user_id_blocked;
+        $blockage =  Block::where('user_id',$id)->where('user_id_blocked',$user_id_blocked)->get();
+        $blockage_count = $blockage->count();
+        if($blockage_count == 0){
+        
+        $new_block = new Block;
+        $new_block->user_id = $id;
+        $new_block->user_id_blocked = $request->user_id_blocked;
+        $new_block->save();
 
         return response()->json([
             "success" => true
         ]);
-
+    } else{
+        return response()->json([
+            "success" => false
+        ]);
     }
-    return response()->json([
-        "success" => false,
-        "condition" => 'max 3 photos'
-    ]);
+        
     }
 
 }
