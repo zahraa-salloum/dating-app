@@ -81,5 +81,12 @@ class UsersActionsController extends Controller
         ]);
     }
 
+    function searchByName($name){
+        $user_info =  User::where('name','like',"$name%")->get();
+
+        return response()->json([
+            "user" => $user_info
+        ]);
+    }
 
 }
