@@ -186,4 +186,12 @@ class UsersActionsController extends Controller
             "who_favorite" => $who_favorite
         ]);
     }
+
+    function myFavorites($id){
+        $my_favorites =  Favorite::join('users', 'favorites.user_id_favorite', '=', 'users.id')->select('name','user_id_favorite')->where('user_id',$id)->get();
+        
+        return response()->json([
+            "my_favorites" => $my_favorites
+        ]);
+    }
 }
