@@ -34,4 +34,13 @@ class MessagesController extends Controller
     }
         
     }
+
+    function showMessages(Request $request, $id){
+        $user_id_received = $request->user_id_received;
+        $messages = Message::where('user_id_sent', $id)->where('user_id_received', $user_id_received)->get();
+
+        return response()->json([
+            "messages" => $messages
+        ]);
+    }
 }

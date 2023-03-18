@@ -34,6 +34,7 @@ Route::group(["prefix" => "users_actions"],function () {
 });
 Route::group(["prefix" => "messages"],function () {
     Route::get('/send_message/{id}', [MessagesController::class, "sendMessage"]);
+    Route::get('/show_messages/{id}', [MessagesController::class, "showMessages"]);
     
 
 });
