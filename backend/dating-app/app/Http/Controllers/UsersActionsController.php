@@ -64,4 +64,15 @@ class UsersActionsController extends Controller
         ]);
     }
 
+
+    function filterByAge($year){
+        $user_info =  Users_info::where('dob','like',"$year%")->get();
+
+        return response()->json([
+            "users" => $user_info
+        ]);
+    }
+    
+
+
 }
