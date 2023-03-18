@@ -10,11 +10,11 @@ use App\Models\Users_info;
 class UsersActionsController extends Controller
 {
     function addOrUpdateUsersInfo(Request $request, $id){
+
         $user_info = Users_info::where('user_id', $id)->first();
+        
         if(empty($user_info) ){
             $user_info = new Users_info;
-        }else{
-            $user_info = Users_info::where('user_id', $id)->first();
         }
         
         $user_info->bio = $request->bio;
