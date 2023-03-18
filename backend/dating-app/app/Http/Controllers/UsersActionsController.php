@@ -171,6 +171,14 @@ class UsersActionsController extends Controller
         ]);
     }
 
+    function myBlocked($id){
+        $my_blocked =  Block::join('users', 'blocks.user_id_blocked', '=', 'users.id')->select('name','user_id_blocked')->where('user_id',$id)->get();
+        
+        return response()->json([
+            "my_blocked" => $my_blocked
+        ]);
+    }
+
     function getWhoFavorite($id){
         $who_favorite =  Favorite::join('users', 'favorites.user_id', '=', 'users.id')->select('name','user_id')->where('user_id_favorite',$id)->get();
         
