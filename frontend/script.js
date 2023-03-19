@@ -292,6 +292,36 @@ workshop_pages.load_favorites = async () => {
 }
 
 workshop_pages.load_notifications = async () => {
+    const container = document.getElementById('container');
+    const container_two = document.getElementById('container_two');
+    const user_id = window.localStorage.getItem('user_id');
+    const token = window.localStorage.getItem('token');
+
+    const get_favorites = workshop_pages.base_url + "users_actions/who_favorite/"+user_id;
+    const response_favorites = await workshop_pages.getAPI(get_favorites,token);
+
+    for(let i=0 ; i < response_favorites.data['who_favorite'].length; i++){
+        const name_div = document.createElement('div');
+        name_div.textContent = response_favorites.data['who_favorite'][i]['name'];
+
+        const line = document.createElement('hr');
+
+        container.appendChild(name_div);
+        container.appendChild(line);
+    }
+
+    const get_blocks = workshop_pages.base_url + "users_actions/who_blocked/"+user_id;
+    const response_blocks = await workshop_pages.getAPI(get_blocks,token);
+
+    for(let i=0 ; i < response_blocks.data['who_blocked'].length; i++){
+        const name_div = document.createElement('div');
+        name_div.textContent = response_blocks.data['who_blocked'][i]['name'];
+
+        const line = document.createElement('hr');
+
+        container_two.appendChild(name_div);
+        container_two.appendChild(line);
+    }
 }
 
 
