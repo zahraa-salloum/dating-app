@@ -198,3 +198,6 @@ workshop_pages.load_profile = async () => {
         console.log(response_picture_optional.data)
     })
 }
+
+workshop_pages.load_find = async () => {
+}
