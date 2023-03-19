@@ -396,6 +396,8 @@ workshop_pages.load_inbox = async () => {
     const user_id = window.localStorage.getItem('user_id');
     const user_id_received = window.localStorage.getItem('user_id_received');
     const token = window.localStorage.getItem('token');
+    const send = document.getElementById('send');
+    const message = document.getElementById('message');
 
     const get_messages = workshop_pages.base_url + "messages/show_messages/"+user_id;
     const response_messages = await workshop_pages.getAPI(get_messages+"?user_id_received="+user_id_received,token);
@@ -422,9 +424,20 @@ workshop_pages.load_inbox = async () => {
         container.appendChild(message_div)
         message_div.appendChild(date_div)
     }
-
-
 }
+
+    send.addEventListener("click", async function(){
+        const message_value = message.value;
+
+        const get_send_message = workshop_pages.base_url + "messages/send_message/"+user_id;
+        const response_send_message = await workshop_pages.getAPI(get_send_message+"?user_id_received="+user_id_received+"&message="+message_value,token);
+        console.log(response_send_message.data)
+        location.reload()
+
+        
+    })
+
+
 
 }
 
