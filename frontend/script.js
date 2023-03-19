@@ -200,4 +200,29 @@ workshop_pages.load_profile = async () => {
 }
 
 workshop_pages.load_find = async () => {
+    const container = document.getElementById('container');
+    const user_id = window.localStorage.getItem('user_id');
+    const token = window.localStorage.getItem('token');
+
+    const get_users = workshop_pages.base_url + "users_actions/opposite_gender/"+user_id;
+    const response_users = await workshop_pages.getAPI(get_users,token);
+
+    for(let i=0 ; i < response_users.data['opposite_users'].length; i++){
+        const name_div = document.createElement('div');
+        name_div.textContent = response_users.data['opposite_users'][i]['name'];
+        const id_button = document.createElement('button');
+        id_button.textContent = "chat";
+        id_button.id = "chat";
+        id_button.name = response_users.data['opposite_users'][i]['user_id'];
+        
+
+        container.appendChild(name_div);
+        container.appendChild(id_button);
+        id_button.addEventListener('click',()=>{window.localStorage.setItem('user_id_received', id_button.name)}) 
+
+
+
+    }
+   
 }
+

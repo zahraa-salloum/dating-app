@@ -47,11 +47,12 @@ class UsersActionsController extends Controller
 
     function getOppositeGender($id){
         $user_info =  Users_info::where('user_id', $id)->first();
+       
         $gender = $user_info->gender;
         if($gender == 'female'){
-            $opposite_users = Users_info::where('gender','male')->get();
+            $opposite_users = Users_info::join('users', 'users_infos.user_id', '=', 'users.id')->select('name','user_id')->where('gender','male')->get();
         }else{
-            $opposite_users = Users_info::where('gender','female')->get();
+            $opposite_users = Users_info::join('users', 'users_infos.user_id', '=', 'users.id')->select('name','user_id')->where('gender','female')->get();
         }
 
         return response()->json([
