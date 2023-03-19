@@ -8,6 +8,10 @@ use App\Models\Block;
 
 class MessagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     function sendMessage(Request $request, $id){
         $id_sending = $id;
         $id_receiving = $request->user_id_received;
