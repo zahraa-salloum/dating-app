@@ -390,6 +390,11 @@ workshop_pages.load_filter = async () => {
 
 }
 
+workshop_pages.load_inbox = async () => {
+}
+
+
+
 
 
 
