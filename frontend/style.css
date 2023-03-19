@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body{
+  font-family: "Open Sans";
+}
+
+html {
+  height:100%;
+  background-image: url('assets/happy-birthday-616363.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
