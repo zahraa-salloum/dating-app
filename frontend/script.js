@@ -443,6 +443,12 @@ workshop_pages.load_inbox = async () => {
 
 
 
+workshop_pages.load_name = async () => {
+    const name = window.localStorage.getItem('name');
+
+    document.getElementById('name').innerText ="Hi....." + name;
+}
+
 
 
 

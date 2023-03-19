@@ -235,4 +235,11 @@ nav {
     padding-top: 20px;
     
   }
+
+  .hello{
+    position: absolute;
+    left: 30%;
+    right: 50%;
+    width: 70%;
+ }
   
