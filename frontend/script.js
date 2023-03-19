@@ -330,7 +330,7 @@ workshop_pages.load_filter = async () => {
     const container_name = document.getElementById('container_name');
     const year = document.getElementById('year');
     const country = document.getElementById('country');
-    const name = window.localStorage.getItem('name');
+    const name = document.getElementById('name');
 
     const token = window.localStorage.getItem('token');
     
@@ -368,6 +368,23 @@ workshop_pages.load_filter = async () => {
 
             container_location.appendChild(name_div);
             container_location.appendChild(line);
+    }
+    })
+
+    submit_name.addEventListener('click',async function(){
+        let name_value = name.value;
+       
+        const get_name = workshop_pages.base_url + "users_actions/search_name/"+name_value;
+        const response_name = await workshop_pages.getAPI(get_name,token);
+       
+        for(let i=0 ; i < response_name.data['users'].length; i++){
+            const name_div = document.createElement('div');
+            name_div.textContent = response_name.data['users'][i]['name'];
+
+            const line = document.createElement('hr');
+
+            container_name.appendChild(name_div);
+            container_name.appendChild(line);
     }
     })
 
