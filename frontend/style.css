@@ -50,7 +50,6 @@ nav {
   }
   .luvya{
     padding: 18px;
-    width: 300px;
     font-family: "Open Sans";
     text-transform:uppercase;
     color: rgb(0, 0, 0);
@@ -58,6 +57,8 @@ nav {
     text-decoration: none;
     display: block;
     font-weight: bolder;
+    align-self: start !important;
+    margin-left: -50%;
   }
 
   /* ---------------------------------------------------------------------------------------- */
