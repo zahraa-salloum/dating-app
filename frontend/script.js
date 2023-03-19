@@ -168,8 +168,11 @@ workshop_pages.load_profile = async () => {
     const education = document.getElementById('education');
     const dob = document.getElementById('dob');
     const picture = document.getElementById('picture');
+    const picture_optional = document.getElementById('picture_optional');
+    
 
     const submit = document.getElementById('submit');
+    const add = document.getElementById('add');
     const user_id = window.localStorage.getItem('user_id');
     const token = window.localStorage.getItem('token');
 
@@ -188,5 +191,10 @@ workshop_pages.load_profile = async () => {
         console.log(response_user_info.data)
         
     })
-    
+    add.addEventListener("click", async function(){
+        let picture_optional_value = picture_optional.value;
+        const get_picture_optional = workshop_pages.base_url + "users_actions/upload_picture/"+user_id;
+        const response_picture_optional = await workshop_pages.getAPI(get_picture_optional+'?picture='+picture_optional_value,token);
+        console.log(response_picture_optional.data)
+    })
 }
