@@ -61,7 +61,7 @@ class UsersActionsController extends Controller
     }
 
     function filterByCountry($country){
-        $user_info =  Users_info::where('country',$country)->get();
+        $user_info =  Users_info::join('users', 'users_infos.user_id', '=', 'users.id')->select('name','user_id')->where('country',$country)->get();
 
         return response()->json([
             "users" => $user_info
@@ -70,7 +70,7 @@ class UsersActionsController extends Controller
 
 
     function filterByAge($year){
-        $user_info =  Users_info::where('dob','like',"$year%")->get();
+        $user_info =  Users_info::join('users', 'users_infos.user_id', '=', 'users.id')->select('name','user_id')->where('dob','like',"$year%")->get();
 
         return response()->json([
             "users" => $user_info
