@@ -245,8 +245,10 @@ workshop_pages.load_find = async () => {
             const response_block = await workshop_pages.getAPI(get_block+"?user_id_blocked="+id_block.name,token);
             console.log(response_block.data)
         });
-        id_favorite.addEventListener('click',()=>{
-            
+        id_favorite.addEventListener('click',async ()=>{
+            const get_favorite = workshop_pages.base_url + "users_actions/favorite_user/"+user_id;
+            const response_favorite = await workshop_pages.getAPI(get_favorite+"?user_id_favorite="+id_favorite.name,token);
+            console.log(response_favorite.data)
         });
 
 
