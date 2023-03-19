@@ -11,7 +11,11 @@
 
     <div class="container">
         <div class="size_heading"><h1>EDIT INFO</h1></div>
-        <input id="bio" type="text" placeholder="Bio" class="input_clear"/>
+
+        <label for="bio" class="label">Bio</label>
+        <input id="bio" type="text" class="input_clear"/>
+
+        <label for="status" class="label">Status</label>
         <select name="status" id="status" class="input_clear">
             <option value="single">Single</option>
             <option value="engaged">Engaged</option>
@@ -19,11 +23,17 @@
             <option value="divorced">Divorced</option>
             <option value="in a relationship">In a Relationship</option>
         </select>
+
+        <label for="gender" class="label">Gender</label>
         <select name="gender" id="gender" class="input_clear">
             <option value="male">Male</option>
             <option value="female">Female</option>
         </select>
-        <input type="date" class="input_clear">
+
+        <label for="dob" class="label">Date of Birth</label>
+        <input id="dob" type="date" class="input_clear">
+
+        <label for="country" class="label">Country</label>
         <select id="country" name="country" class="input_clear">
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
@@ -270,9 +280,16 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        <input id="education" type="text" placeholder="Education" class="input_clear"/>
-        <input id="job" type="text" placeholder="Job" class="input_clear"/>
-        <input id="picture" type="text" placeholder="Picture" class="input_clear"/>
+
+        <label for="education" class="label">Education</label>
+        <input id="education" type="text"  class="input_clear"/>
+
+        <label for="job" class="label">Job</label>
+        <input id="job" type="text"  class="input_clear"/>
+
+        <label for="picture" class="label">Picture</label>
+        <input id="picture" type="text" placeholder="Add url" class="input_clear"/>
+
         <button class="button" id="submit">CONFIRM</button>
     </div>
 
