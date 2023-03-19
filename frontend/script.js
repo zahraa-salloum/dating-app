@@ -324,6 +324,39 @@ workshop_pages.load_notifications = async () => {
     }
 }
 
+workshop_pages.load_filter = async () => {
+    const container_age = document.getElementById('container_age');
+    const container_location = document.getElementById('container_location');
+    const container_name = document.getElementById('container_name');
+    const year = document.getElementById('year');
+    const country = document.getElementById('country');
+    const name = window.localStorage.getItem('name');
+
+    const token = window.localStorage.getItem('token');
+    
+    const submit_age = document.getElementById('submit_age');
+    const submit_location = document.getElementById('submit_location');
+    const submit_name = document.getElementById('submit_name');
+
+    submit_age.addEventListener('click',async function(){
+        let year_value = year.value;
+
+        const get_year = workshop_pages.base_url + "users_actions/filter_age/"+year_value;
+        const response_year = await workshop_pages.getAPI(get_year,token);
+
+        for(let i=0 ; i < response_year.data['users'].length; i++){
+            const name_div = document.createElement('div');
+            name_div.textContent = response_year.data['users'][i]['name'];
+
+            const line = document.createElement('hr');
+
+            container_age.appendChild(name_div);
+            container_age.appendChild(line);
+    }
+    })
+}
+
+
 
 
 
