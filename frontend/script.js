@@ -258,3 +258,7 @@ workshop_pages.load_find = async () => {
    
 }
 
+workshop_pages.load_favorites = async () => {
+}
+
+
