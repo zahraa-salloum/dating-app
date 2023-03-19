@@ -8,7 +8,7 @@ workshop_pages.getAPI = async (api_url,api_token) => {
             api_url,
             {
                 headers:{
-                    'Authorization' : "token " + api_token
+                    'Authorization' : "Bearer " + api_token
                 }
             }
             );
@@ -24,7 +24,7 @@ workshop_pages.postAPI = async (api_url, api_data, api_token = null) => {
             api_data,
             {
                 headers:{
-                    'Authorization' : "token " + api_token
+                    'Authorization' : "Bearer " + api_token
                 }
             }
         );
@@ -157,4 +157,36 @@ workshop_pages.load_out = async () => {
         localStorage.clear();
         location.replace("main.html")
     })
+}
+
+workshop_pages.load_profile = async () => {
+    const bio = document.getElementById('bio'); 
+    const status = document.getElementById('status');
+    const gender = document.getElementById('gender');
+    const country = document.getElementById('country');
+    const job = document.getElementById('job');
+    const education = document.getElementById('education');
+    const dob = document.getElementById('dob');
+    const picture = document.getElementById('picture');
+
+    const submit = document.getElementById('submit');
+    const user_id = window.localStorage.getItem('user_id');
+    const token = window.localStorage.getItem('token');
+
+    submit.addEventListener("click", async function(){
+        let bio_value = bio.value;
+        let status_value = status.value;
+        let gender_value = gender.value;
+        let country_value = country.value;
+        let job_value = job.value;
+        let education_value = education.value;
+        let dob_value = dob.value; 
+        let picture_value = picture.value;
+
+        const get_user_info = workshop_pages.base_url + "users_actions/users_info/"+user_id;
+        const response_user_info = await workshop_pages.getAPI(get_user_info+'?bio='+bio_value+'&status='+status_value+'&gender='+gender_value+'&user_id='+user_id+'&country='+country_value+'&job='+job_value+'&education='+education_value+'&dob='+dob_value+'&profile_picture='+picture_value,token);
+        console.log(response_user_info.data)
+        
+    })
+    
 }
