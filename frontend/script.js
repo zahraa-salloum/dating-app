@@ -210,15 +210,44 @@ workshop_pages.load_find = async () => {
     for(let i=0 ; i < response_users.data['opposite_users'].length; i++){
         const name_div = document.createElement('div');
         name_div.textContent = response_users.data['opposite_users'][i]['name'];
+
         const id_button = document.createElement('button');
         id_button.textContent = "chat";
         id_button.id = "chat";
         id_button.name = response_users.data['opposite_users'][i]['user_id'];
-        
+        id_button.classList='button'
+
+        const id_block = document.createElement('button');
+        id_block.textContent = "block";
+        id_block.id = "block";
+        id_block.name = response_users.data['opposite_users'][i]['user_id'];
+        id_block.classList='button'
+
+        const id_favorite = document.createElement('button');
+        id_favorite.textContent = "favorite";
+        id_favorite.id = "favorite";
+        id_favorite.name = response_users.data['opposite_users'][i]['user_id'];
+        id_favorite.classList='button';
+
+        const line = document.createElement('hr');
 
         container.appendChild(name_div);
         container.appendChild(id_button);
-        id_button.addEventListener('click',()=>{window.localStorage.setItem('user_id_received', id_button.name)}) 
+        container.appendChild(id_block);
+        container.appendChild(id_favorite);
+        container.appendChild(line);
+
+        id_button.addEventListener('click',()=>{
+            window.localStorage.setItem('user_id_received', id_button.name
+        )});
+        id_block.addEventListener('click',async ()=>{
+            const get_block = workshop_pages.base_url + "users_actions/block_user/"+user_id;
+            const response_block = await workshop_pages.getAPI(get_block+"?user_id_blocked="+id_block.name,token);
+            console.log(response_block.data)
+        });
+        id_favorite.addEventListener('click',()=>{
+            
+        });
 
 
 

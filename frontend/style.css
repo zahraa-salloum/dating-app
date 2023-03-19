@@ -141,3 +141,12 @@ nav {
     align-self: start !important;
     margin-bottom: -3%;
   }
+  .bttn_user{
+    display: inline;
+  }
+
+  hr{
+    width: 100%;
+    
+    
+  }
