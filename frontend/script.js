@@ -239,8 +239,9 @@ workshop_pages.load_find = async () => {
         container.appendChild(line);
 
         id_button.addEventListener('click',()=>{
-            window.localStorage.setItem('user_id_received', id_button.name
-        )});
+            window.localStorage.setItem('user_id_received', id_button.name)
+            location.replace("inbox.html")
+        });
         id_block.addEventListener('click',async ()=>{
             const get_block = workshop_pages.base_url + "users_actions/block_user/"+user_id;
             const response_block = await workshop_pages.getAPI(get_block+"?user_id_blocked="+id_block.name,token);
@@ -391,9 +392,41 @@ workshop_pages.load_filter = async () => {
 }
 
 workshop_pages.load_inbox = async () => {
+    const container = document.getElementById('container');
+    const user_id = window.localStorage.getItem('user_id');
+    const user_id_received = window.localStorage.getItem('user_id_received');
+    const token = window.localStorage.getItem('token');
+
+    const get_messages = workshop_pages.base_url + "messages/show_messages/"+user_id;
+    const response_messages = await workshop_pages.getAPI(get_messages+"?user_id_received="+user_id_received,token);
+
+    for(let i=0 ; i < response_messages.data['messages'].length; i++){
+        if(response_messages.data['messages'][i]['user_id_sent']==user_id){
+        const message_div = document.createElement('div');
+        message_div.textContent = response_messages.data['messages'][i]['message'];
+        message_div.classList = 'container_blue';
+
+        const date_div = document.createElement('div');
+        date_div.textContent = response_messages.data['messages'][i]['date_time'];
+
+        container.appendChild(message_div)
+        message_div.appendChild(date_div)
+    }else{
+        const message_div = document.createElement('div');
+        message_div.textContent = response_messages.data['messages'][i]['message'];
+        message_div.classList = 'container_grey';
+
+        const date_div = document.createElement('div');
+        date_div.textContent = response_messages.data['messages'][i]['date_time'];
+
+        container.appendChild(message_div)
+        message_div.appendChild(date_div)
+    }
+
+
 }
 
-
+}
 
 
 
