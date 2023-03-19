@@ -210,31 +210,32 @@ workshop_pages.load_find = async () => {
     for(let i=0 ; i < response_users.data['opposite_users'].length; i++){
         const name_div = document.createElement('div');
         name_div.textContent = response_users.data['opposite_users'][i]['name'];
+        name_div.classList = 'container_name'
 
         const id_button = document.createElement('button');
         id_button.textContent = "chat";
         id_button.id = "chat";
         id_button.name = response_users.data['opposite_users'][i]['user_id'];
-        id_button.classList='button'
+        id_button.classList='btngreen'
 
         const id_block = document.createElement('button');
         id_block.textContent = "block";
         id_block.id = "block";
         id_block.name = response_users.data['opposite_users'][i]['user_id'];
-        id_block.classList='button'
+        id_block.classList='btn'
 
         const id_favorite = document.createElement('button');
         id_favorite.textContent = "favorite";
         id_favorite.id = "favorite";
         id_favorite.name = response_users.data['opposite_users'][i]['user_id'];
-        id_favorite.classList='button';
+        id_favorite.classList='btnyellow';
 
         const line = document.createElement('hr');
 
         container.appendChild(name_div);
-        container.appendChild(id_button);
-        container.appendChild(id_block);
-        container.appendChild(id_favorite);
+        name_div.appendChild(id_button);
+        name_div.appendChild(id_block);
+        name_div.appendChild(id_favorite);
         container.appendChild(line);
 
         id_button.addEventListener('click',()=>{
