@@ -113,3 +113,33 @@ submit.addEventListener("click", async function(){
 
     
 }
+
+
+workshop_pages.load_login = async () => {
+    let submit = document.getElementById('submit')
+    submit.addEventListener('click', logIn);
+
+    async function logIn() {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        let data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+
+        const post_user_login = workshop_pages.base_url + "authentication/login";
+        const response = await workshop_pages.postAPI(post_user_login,data);
+        if(response.data['status']=='success'){
+            window.localStorage.setItem('user_id', response.data['user']['id']);
+            window.localStorage.setItem('token', response.data['authorisation']['token']);
+            window.localStorage.setItem('name', response.data['user']['name']);
+            location.replace("user.html")
+            console.log(response.data)
+
+        
+            
+        
+
+        }
+    }
+}
