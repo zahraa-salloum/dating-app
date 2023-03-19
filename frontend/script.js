@@ -2,9 +2,16 @@ const workshop_pages = {};
 
 workshop_pages.base_url = "http://127.0.0.1:8000/api/v0.0.1/";
 
-workshop_pages.getAPI = async (api_url) => {
+workshop_pages.getAPI = async (api_url,api_token) => {
     try{
-        return await axios(api_url);
+        return await axios(
+            api_url,
+            {
+                headers:{
+                    'Authorization' : "token " + api_token
+                }
+            }
+            );
     }catch(error){
         console.log("Error from GET API");
     }
@@ -142,4 +149,12 @@ workshop_pages.load_login = async () => {
 
         }
     }
+}
+
+workshop_pages.load_out = async () => {
+    let out = document.getElementById('out');
+    out.addEventListener("click", function(){
+        localStorage.clear();
+        location.replace("main.html")
+    })
 }
