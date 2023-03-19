@@ -134,3 +134,9 @@ nav {
     color: rgb(19, 242, 7);
     
   }
+
+  .label{
+    margin-left: 13%;
+    align-self: start !important;
+    margin-bottom: -3%;
+  }
