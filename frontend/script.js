@@ -291,4 +291,10 @@ workshop_pages.load_favorites = async () => {
     }
 }
 
+workshop_pages.load_notifications = async () => {
+}
+
+
+
+
 
