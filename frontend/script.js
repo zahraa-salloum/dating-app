@@ -354,6 +354,23 @@ workshop_pages.load_filter = async () => {
             container_age.appendChild(line);
     }
     })
+    submit_location.addEventListener('click',async function(){
+        let country_value = country.value;
+
+        const get_country = workshop_pages.base_url + "users_actions/filter_country/"+country_value;
+        const response_country = await workshop_pages.getAPI(get_country,token);
+
+        for(let i=0 ; i < response_country.data['users'].length; i++){
+            const name_div = document.createElement('div');
+            name_div.textContent = response_country.data['users'][i]['name'];
+
+            const line = document.createElement('hr');
+
+            container_location.appendChild(name_div);
+            container_location.appendChild(line);
+    }
+    })
+
 }
 
 
